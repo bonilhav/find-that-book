@@ -7,13 +7,13 @@ import { removeBookId } from '../utils/localStorage';
 
 //added code
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_ME } from '../utils/queries';
-import { REMOVE_BOOK } from '../utils/mutuations'
+import { QUERY_USER } from '../utils/queries';
+import { REMOVE_BOOK } from '../utils/mutations'
 
 const SavedBooks = () => {
-  const { loading, data } = useQuery(QUERY_ME);
+  const { loading, data } = useQuery(QUERY_USER);
   const [removeBook, { error }] = useMutation(REMOVE_BOOK)
-  const userData = data?.me || {};
+  const userData = data?.user || {};
 
 /*  const [userData, setUserData] = useState({});
 
@@ -55,7 +55,7 @@ const SavedBooks = () => {
 
     try {
       const { data } = await removeBook({
-        variables: { bookId }
+        variables: { bookId },
       });
       /* const response = await deleteBook(bookId, token);
 
